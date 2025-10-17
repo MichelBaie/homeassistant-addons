@@ -1,0 +1,34 @@
+name: "Hyperion"
+version: "latest"
+slug: "hyperion"
+description: "Hyperion NG via image GHCR (mode host, ingress, devices USB/vidéo/série)"
+url: "https://github.com/MichelBaie/homeassistant-addons/tree/main/hyperion"
+arch:
+  - amd64
+  - aarch64
+  - armv7
+
+startup: "application"
+
+host_network: true
+apparmor: false
+
+ingress: true
+ingress_port: 8090
+panel_title: "Hyperion"
+panel_icon: "mdi:led-strip-variant"
+panel_admin: false
+
+watchdog: "tcp://[HOST]:[PORT:8090]"
+
+usb: true
+uart: true
+video: true
+udev: true
+
+map:
+  - type: addon_config
+    read_only: false
+    path: /config
+
+image: "ghcr.io/michelbaie/hyperionng-dockerized"
